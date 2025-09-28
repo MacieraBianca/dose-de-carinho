@@ -8,15 +8,17 @@ const MenuScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
+        {/* Botão Adicionar Remédio */}
         <Link href="/addMedicine" asChild>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.addButton}>
             <Image source={plusIcon} style={styles.icon} />
             <Text style={styles.buttonText}>Adicionar remédio</Text>
           </TouchableOpacity>
         </Link>
 
+        {/* Botão Remover Remédio */}
         <Link href="/removeMedicine" asChild>
-          <TouchableOpacity style={[styles.button, styles.removeButton]}>
+          <TouchableOpacity style={styles.removeButton}>
             <Image source={minusIcon} style={styles.icon} />
             <Text style={styles.buttonText}>Remover remédio</Text>
           </TouchableOpacity>
@@ -46,24 +48,29 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  // Estilo base para ambos os botões
-  button: {
+  // Estilo separado e completo para o botão de adicionar
+  addButton: {
     flexDirection: 'row',
-    backgroundColor: '#28a745', // Fundo verde como padrão
+    backgroundColor: '#28a745', // Fundo verde
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    marginBottom: 20,
+    marginBottom: 20, // Margem para separar do botão de baixo
   },
-  // Estilo específico para o botão de remover.
-  // Note que definimos APENAS o que muda em relação ao estilo 'button'.
-  // Isso evita repetição de código.
+  // Estilo separado e completo para o botão de remover
   removeButton: {
-    backgroundColor: '#dc3545', // Sobrescreve a cor de fundo para vermelho
-    marginBottom: 0, // Remove a margem do último botão
+    flexDirection: 'row',
+    backgroundColor: '#dc3546b9', // Fundo vermelho
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: 0, // Sem margem, pois é o último elemento
   },
   icon: {
     width: 30,
