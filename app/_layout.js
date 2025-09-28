@@ -3,8 +3,8 @@ import { Image, StyleSheet, View, Text } from 'react-native'; // Adicionado View
 import { MedicineProvider } from '../context/MedicineContext';
 import { PatientProvider } from '../context/PatientContext'; // MUDANÇA: Importar PatientProvider
 
-import infoIcon from '../assets/icons/information.png';
-import menuIcon from '../assets/icons/menu-bar.png';
+import infoIcon from '../assets/icons/house.png';
+import menuIcon from '../assets/icons/menu.png';
 import userIcon from '../assets/icons/profile-user.png';
 
 export default function AppLayout() {

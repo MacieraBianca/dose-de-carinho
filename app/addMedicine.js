@@ -1,35 +1,47 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, Image, Alert } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useRouter } from 'expo-router'; // MUDANÇA: Importar useRouter para navegação
+import { useRouter } from 'expo-router'; 
 
-import { MedicineContext } from '../context/MedicineContext'; // MUDANÇA: Caminho do contexto corrigido
+import { MedicineContext } from '../context/MedicineContext'; 
 
 // Importar ícones
 import cancelIcon from '../assets/icons/cancel.png';
 import clockIcon from '../assets/icons/circular-alarm-clock-tool.png';
 
 const AddMedicineScreen = () => {
-  const router = useRouter(); // MUDANÇA: Usar o hook do Expo Router
+  const router = useRouter(); 
   const { addMedicine } = useContext(MedicineContext);
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState('1');
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
 
+  // ✅ Novo estado para dias da semana
+  const [selectedDays, setSelectedDays] = useState([]);
+  const daysOfWeek = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+
+  const toggleDay = (day) => {
+    if (selectedDays.includes(day)) {
+      setSelectedDays(selectedDays.filter(d => d !== day));
+    } else {
+      setSelectedDays([...selectedDays, day]);
+    }
+  };
+
   const handleAddTime = () => {
-    if (name.trim() === '' || quantity.trim() === '') {
-      // Usando Alert em vez de alert()
-      Alert.alert('Atenção', 'Por favor, preencha todos os campos.');
+    if (name.trim() === '' || quantity.trim() === '' || selectedDays.length === 0) {
+      Alert.alert('Atenção', 'Por favor, preencha todos os campos e selecione pelo menos 1 dia.');
       return;
     }
     const newMedicine = {
       name,
       quantity: parseInt(quantity, 10),
       time: date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      days: selectedDays, // ✅ dias da semana
     };
     addMedicine(newMedicine);
-    router.back(); // MUDANÇA: Voltar para a tela anterior usando o router
+    router.back(); 
   };
 
   const onChangeTime = (event, selectedDate) => {
@@ -41,7 +53,7 @@ const AddMedicineScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        {/* MUDANÇA: Botão de fechar agora usa o router */}
+        {/* Botão de fechar */}
         <TouchableOpacity style={styles.closeButton} onPress={() => router.back()}>
             <Image source={cancelIcon} style={styles.closeIcon}/>
         </TouchableOpacity>
@@ -76,6 +88,30 @@ const AddMedicineScreen = () => {
           />
         )}
 
+        {/* ✅ Campo novo - Dias da semana */}
+        <Text style={styles.label}>Dias da semana:</Text>
+        <View style={styles.daysContainer}>
+          {daysOfWeek.map((day) => (
+            <TouchableOpacity
+              key={day}
+              style={[
+                styles.dayButton,
+                selectedDays.includes(day) && styles.dayButtonSelected
+              ]}
+              onPress={() => toggleDay(day)}
+            >
+              <Text
+                style={[
+                  styles.dayButtonText,
+                  selectedDays.includes(day) && styles.dayButtonTextSelected
+                ]}
+              >
+                {day}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
         <TouchableOpacity style={styles.addButton} onPress={handleAddTime}>
           <Text style={styles.addButtonText}>Adicionar</Text>
         </TouchableOpacity>
@@ -84,7 +120,7 @@ const AddMedicineScreen = () => {
   );
 };
 
-// Estilos (permanecem os mesmos)
+// Estilos
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -138,6 +174,32 @@ const styles = StyleSheet.create({
         height: 24,
         tintColor: '#333',
     },
+    daysContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginTop: 10,
+    },
+    dayButton: {
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 8,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        margin: 5,
+        backgroundColor: '#0F4C75',
+    },
+    dayButtonSelected: {
+        backgroundColor: '#28a745',
+        borderColor: '#28a745',
+    },
+    dayButtonText: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+    dayButtonTextSelected: {
+        color: '#fff',
+    },
     addButton: {
         backgroundColor: '#28a745',
         borderRadius: 15,
@@ -151,6 +213,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 });
-
 
 export default AddMedicineScreen;
