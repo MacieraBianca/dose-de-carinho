@@ -8,15 +8,31 @@
     "scheme": "dosedecarinho",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "imageWidth": 200,
+      "resizeMode": "contain",
+      "backgroundColor": "#BBE1FA"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourname.dosedecarinho",
+      "infoPlist": {
+        "UIBackgroundModes": ["remote-notification"]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#BBE1FA"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.VIBRATE"
+      ],
+      "package": "com.yourname.dosedecarinho"
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +48,13 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/icon.png",
+          "color": "#3282B8"
         }
       ]
     ],
