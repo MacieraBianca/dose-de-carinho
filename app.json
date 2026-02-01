@@ -1,30 +1,32 @@
 {
   "expo": {
-    "name": "dose-de-carinho",
+    "name": "Dose de Carinho",
     "slug": "dose-de-carinho",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "dosedecarinho",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "imageWidth": 200,
       "resizeMode": "contain",
-      "backgroundColor": "#BBE1FA"
+      "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourname.dosedecarinho",
+      "bundleIdentifier": "com.seuusuario.dosedecarinho",
       "infoPlist": {
-        "UIBackgroundModes": ["remote-notification"]
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#BBE1FA"
+        "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
       "permissions": [
@@ -32,7 +34,7 @@
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE"
       ],
-      "package": "com.yourname.dosedecarinho"
+      "package": "com.seuusuario.dosedecarinho"
     },
     "web": {
       "bundler": "metro",
@@ -60,6 +62,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "72c53a90-843c-4c5b-affc-7b7150f11a7f"
+      }
     }
   }
 }
