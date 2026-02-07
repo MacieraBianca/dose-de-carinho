@@ -4,15 +4,15 @@ import {
   registerForPushNotificationsAsync, 
   scheduleMedicineNotification,
   cancelMedicineNotifications 
-} from '../app/services/notificationService'; // ✅ CORRETO
+} from '../services/notificationService';
 
 export const MedicineContext = createContext();
 
 export const MedicineProvider = ({ children }) => {
   const [medicines, setMedicines] = useState([]);
 
-  // Solicitar permissão ao iniciar o app
   useEffect(() => {
+    // Tenta registrar as permissões assim que o app abre
     registerForPushNotificationsAsync();
     loadMedicines();
   }, []);
@@ -37,24 +37,36 @@ export const MedicineProvider = ({ children }) => {
   };
 
   const addMedicine = async (medicine) => {
-    const newMedicine = { ...medicine, id: Date.now().toString() };
-    const updatedMedicines = [...medicines, newMedicine];
-    setMedicines(updatedMedicines);
-    await saveMedicines(updatedMedicines);
-    
-    // ✅ Agendar notificação para o novo remédio
-    await scheduleMedicineNotification(newMedicine);
+    try {
+      const newMedicine = { ...medicine, id: Date.now().toString() };
+      
+      // 1. Primeiro agendamos o alarme. Se isso falhar, ele vai para o catch.
+      await scheduleMedicineNotification(newMedicine);
+      
+      // 2. Só salvamos na lista se o agendamento não der erro crítico
+      const updatedMedicines = [...medicines, newMedicine];
+      setMedicines(updatedMedicines);
+      await saveMedicines(updatedMedicines);
+      
+      return true; // Sucesso!
+    } catch (error) {
+      console.error('Erro detalhado no agendamento:', error);
+      // Lança o erro para o addMedicine.js exibir o alerta
+      throw error; 
+    }
   };
 
   const removeMedicines = async (ids) => {
-    // ✅ Cancelar notificações dos remédios removidos
-    for (const id of ids) {
-      await cancelMedicineNotifications(id);
+    try {
+      for (const id of ids) {
+        await cancelMedicineNotifications(id);
+      }
+      const updatedMedicines = medicines.filter((med) => !ids.includes(med.id));
+      setMedicines(updatedMedicines);
+      await saveMedicines(updatedMedicines);
+    } catch (error) {
+      console.error('Erro ao remover:', error);
     }
-    
-    const updatedMedicines = medicines.filter((med) => !ids.includes(med.id));
-    setMedicines(updatedMedicines);
-    await saveMedicines(updatedMedicines);
   };
 
   return (
