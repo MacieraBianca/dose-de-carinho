@@ -12,7 +12,7 @@ export const MedicineProvider = ({ children }) => {
   const [medicines, setMedicines] = useState([]);
 
   useEffect(() => {
-    // Tenta registrar as permissões assim que o app abre
+    // Registra permissões e cria o canal de notificação ao abrir o app
     registerForPushNotificationsAsync();
     loadMedicines();
   }, []);
@@ -39,20 +39,19 @@ export const MedicineProvider = ({ children }) => {
   const addMedicine = async (medicine) => {
     try {
       const newMedicine = { ...medicine, id: Date.now().toString() };
-      
-      // 1. Primeiro agendamos o alarme. Se isso falhar, ele vai para o catch.
+
+      // Primeiro agenda o alarme
       await scheduleMedicineNotification(newMedicine);
-      
-      // 2. Só salvamos na lista se o agendamento não der erro crítico
+
+      // Depois salva no estado e no AsyncStorage
       const updatedMedicines = [...medicines, newMedicine];
       setMedicines(updatedMedicines);
       await saveMedicines(updatedMedicines);
-      
-      return true; // Sucesso!
+
+      return true;
     } catch (error) {
       console.error('Erro detalhado no agendamento:', error);
-      // Lança o erro para o addMedicine.js exibir o alerta
-      throw error; 
+      throw error;
     }
   };
 
@@ -61,7 +60,9 @@ export const MedicineProvider = ({ children }) => {
       for (const id of ids) {
         await cancelMedicineNotifications(id);
       }
-      const updatedMedicines = medicines.filter((med) => !ids.includes(med.id));
+      const updatedMedicines = medicines.filter(
+        (med) => !ids.includes(med.id)
+      );
       setMedicines(updatedMedicines);
       await saveMedicines(updatedMedicines);
     } catch (error) {
