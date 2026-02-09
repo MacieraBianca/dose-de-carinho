@@ -36,18 +36,19 @@ export async function registerForPushNotificationsAsync() {
 }
 
 /**
- * AGENDAMENTO DOS ALARMES
- * ⚠️ Nunca lança erro para fora
+ * AGENDAMENTO DOS ALARMES (SEMANAL)
+ * ✅ Correção: adicionar o "type" do trigger (WEEKLY)
+ * ⚠️ Nunca lança erro para fora (não quebra o salvar)
  */
 export async function scheduleMedicineNotification(medicine) {
   const dayMap = {
-    'Dom': 1,
-    'Seg': 2,
-    'Ter': 3,
-    'Qua': 4,
-    'Qui': 5,
-    'Sex': 6,
-    'Sáb': 7,
+    Dom: 1,
+    Seg: 2,
+    Ter: 3,
+    Qua: 4,
+    Qui: 5,
+    Sex: 6,
+    Sáb: 7,
   };
 
   const date = new Date(medicine.dateTime);
@@ -71,6 +72,8 @@ export async function scheduleMedicineNotification(medicine) {
           data: { medicineId: medicine.id },
         },
         trigger: {
+          // ✅ ESSENCIAL: define que é agendamento semanal no Android
+          type: Notifications.SchedulableTriggerInputTypes.WEEKLY,
           channelId: 'medicine-alarms',
           weekday,
           hour,
@@ -80,10 +83,11 @@ export async function scheduleMedicineNotification(medicine) {
       });
     } catch (error) {
       console.warn(`⚠️ Falha ao agendar ${medicine.name} para ${day}`, error);
-      // NÃO lança erro
+      // não relança erro
     }
   }
 
+  console.log(`✅ Alarmes agendados: ${medicine.name} às ${hour}:${minute}`);
   return true;
 }
 
