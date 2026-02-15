@@ -19,8 +19,12 @@
       "bundleIdentifier": "com.seuusuario.dosedecarinho",
       "infoPlist": {
         "UIBackgroundModes": [
+          "remote-notification",
           "remote-notification"
         ]
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
       }
     },
     "android": {
@@ -33,9 +37,14 @@
         "android.permission.SCHEDULE_EXACT_ALARM",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE",
+        "android.permission.NOTIFICATIONS",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.VIBRATE",
         "android.permission.NOTIFICATIONS"
       ],
-      "package": "com.seuusuario.dosedecarinho"
+      "package": "com.seuusuario.dosedecarinho",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
@@ -69,6 +78,9 @@
       "eas": {
         "projectId": "72c53a90-843c-4c5b-affc-7b7150f11a7f"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/72c53a90-843c-4c5b-affc-7b7150f11a7f"
     }
   }
 }
