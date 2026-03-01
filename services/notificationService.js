@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 
 /**
  * REGISTRO DE PERMISSÕES + CANAL (ANDROID)
+ * ✅ Som customizado no canal (Android)
  */
 export async function registerForPushNotificationsAsync() {
   if (!Device.isDevice) return false;
@@ -25,7 +26,10 @@ export async function registerForPushNotificationsAsync() {
     await Notifications.setNotificationChannelAsync('medicine-alarms', {
       name: 'Alarmes de Remédio',
       importance: Notifications.AndroidImportance.MAX,
-      sound: 'default',
+
+      // ✅ Som customizado (o arquivo precisa existir no build nativo)
+      sound: 'alarm',
+
       vibrationPattern: [0, 250, 250, 250],
       enableVibrate: true,
       lockscreenVisibility: Notifications.AndroidNotificationVisibility.PUBLIC,
@@ -37,8 +41,8 @@ export async function registerForPushNotificationsAsync() {
 
 /**
  * AGENDAMENTO DOS ALARMES (SEMANAL)
- * ✅ Correção: adicionar o "type" do trigger (WEEKLY)
- * ⚠️ Nunca lança erro para fora (não quebra o salvar)
+ * ✅ Usa o canal com som "alarm" no Android
+ * ✅ iOS: usa "default" (som custom no iOS exige config nativa extra)
  */
 export async function scheduleMedicineNotification(medicine) {
   const dayMap = {
@@ -68,11 +72,14 @@ export async function scheduleMedicineNotification(medicine) {
         content: {
           title: '💊 Hora do remédio!',
           body: `Tomar ${medicine.quantity} dose(s) de ${medicine.name}`,
+
+          // ✅ Android vai tocar o som do canal (medicine-alarms)
+          // ✅ iOS toca o som padrão
           sound: 'default',
+
           data: { medicineId: medicine.id },
         },
         trigger: {
-          // ✅ ESSENCIAL: define que é agendamento semanal no Android
           type: Notifications.SchedulableTriggerInputTypes.WEEKLY,
           channelId: 'medicine-alarms',
           weekday,
@@ -83,7 +90,6 @@ export async function scheduleMedicineNotification(medicine) {
       });
     } catch (error) {
       console.warn(`⚠️ Falha ao agendar ${medicine.name} para ${day}`, error);
-      // não relança erro
     }
   }
 

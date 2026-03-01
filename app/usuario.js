@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Link } from 'expo-router'; // MUDANÇA: Importar Link para navegação
+import { Link } from 'expo-router';
 
 export default function UserScreen() {
   return (
@@ -8,19 +8,26 @@ export default function UserScreen() {
       <Text style={styles.header}>Dose de carinho</Text>
       
       <View style={styles.buttonContainer}>
-        {/* Botão "Dados do paciente" */}
+
         <Link href="/dadosPaciente" asChild>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Dados do paciente</Text>
           </TouchableOpacity>
         </Link>
 
-        {/* Botão "Cuidadores" */}
         <Link href="/cuidadores" asChild>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Cuidadores</Text>
           </TouchableOpacity>
         </Link>
+
+        {/* ✅ NOVO BOTÃO */}
+        <Link href="/creditos" asChild>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Créditos do desenvolvedor</Text>
+          </TouchableOpacity>
+        </Link>
+
       </View>
     </View>
   );
@@ -32,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#BBE1FA',
     paddingTop: 60,
     paddingHorizontal: 20,
-    alignItems: 'center', // Centraliza o conteúdo horizontalmente
+    alignItems: 'center',
   },
   header: {
     fontSize: 28,
@@ -42,8 +49,8 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   buttonContainer: {
-    width: '100%', // Usa a largura total
-    maxWidth: 300, // Largura máxima para os botões
+    width: '100%',
+    maxWidth: 300,
   },
   button: {
     backgroundColor: '#3282B8',

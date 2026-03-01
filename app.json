@@ -3,6 +3,7 @@
     "name": "Dose de Carinho",
     "slug": "dose-de-carinho",
     "version": "1.0.0",
+    "runtimeVersion": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "dosedecarinho",
@@ -19,12 +20,8 @@
       "bundleIdentifier": "com.seuusuario.dosedecarinho",
       "infoPlist": {
         "UIBackgroundModes": [
-          "remote-notification",
           "remote-notification"
         ]
-      },
-      "runtimeVersion": {
-        "policy": "appVersion"
       }
     },
     "android": {
@@ -37,14 +34,9 @@
         "android.permission.SCHEDULE_EXACT_ALARM",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE",
-        "android.permission.NOTIFICATIONS",
-        "android.permission.SCHEDULE_EXACT_ALARM",
-        "android.permission.RECEIVE_BOOT_COMPLETED",
-        "android.permission.VIBRATE",
         "android.permission.NOTIFICATIONS"
       ],
-      "package": "com.seuusuario.dosedecarinho",
-      "runtimeVersion": "1.0.0"
+      "package": "com.seuusuario.dosedecarinho"
     },
     "web": {
       "bundler": "metro",
@@ -57,7 +49,7 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 300,
+          "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#0F4C75"
         }
@@ -78,9 +70,6 @@
       "eas": {
         "projectId": "72c53a90-843c-4c5b-affc-7b7150f11a7f"
       }
-    },
-    "updates": {
-      "url": "https://u.expo.dev/72c53a90-843c-4c5b-affc-7b7150f11a7f"
     }
   }
 }
