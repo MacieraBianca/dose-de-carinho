@@ -1,50 +1,107 @@
-# Welcome to your Expo app 👋
+# Dose de Carinho  
+<img height="170em" src="https://i.pinimg.com/736x/d2/62/e5/d262e51d416e69620de291a6b193179f.jpg"/>
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> Aplicativo mobile para auxiliar no gerenciamento de medicamentos e nos cuidados com o paciente.
 
-## Get started
+## 📚 Sobre o projeto
 
-1. Install dependencies
+O **Dose de Carinho** é um aplicativo mobile desenvolvido como parte de um **projeto acadêmico do curso de Análise e Desenvolvimento de Sistemas (ADS)**.
 
-   ```bash
-   npm install
-   ```
+O projeto foi idealizado com o objetivo de desenvolver uma solução tecnológica que possa auxiliar pessoas que fazem uso contínuo de medicamentos e também pessoas responsáveis pelos cuidados de pacientes.
 
-2. Start the app
+A proposta é facilitar o acompanhamento das medicações por meio de lembretes e alarmes, além de disponibilizar uma área destinada ao registro de informações importantes sobre o paciente.
 
-   ```bash
-   npx expo start
-   ```
+O desenvolvimento do projeto também busca aplicar, na prática, conhecimentos adquiridos ao longo da formação acadêmica, especialmente nas áreas de desenvolvimento mobile, programação, armazenamento de dados, notificações e desenvolvimento de interfaces.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🎯 Objetivo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+O principal objetivo do **Dose de Carinho** é auxiliar no controle da rotina de medicamentos, permitindo que o usuário organize seus horários e receba lembretes para as medicações cadastradas.
 
-## Get a fresh project
+Além disso, o aplicativo possui uma área de cuidados do paciente, permitindo registrar informações importantes que podem auxiliar no acompanhamento da pessoa.
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 📱 Principais funcionalidades
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- 💊 Cadastro de medicamentos;
+- ⏰ Agendamento de horários para os medicamentos;
+- 🔔 Sistema de notificações e alarmes;
+- 👤 Cadastro e gerenciamento de informações do paciente;
+- ❤️ Área destinada aos cuidados do paciente;
+- 📝 Registro de informações importantes, como alergias e cuidados específicos;
+- 📱 Interface desenvolvida para dispositivos móveis;
+- 💾 Armazenamento dos dados do aplicativo;
+- 🔄 Gerenciamento dos medicamentos cadastrados.
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🧪 Versão Beta
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+O **Dose de Carinho** encontra-se em versão **Beta**, disponibilizada para os primeiros testes e avaliações.
 
-## Join the community
+A versão Beta tem como objetivo permitir que usuários experimentem as funcionalidades já implementadas e forneçam feedbacks que possam contribuir para futuras melhorias do aplicativo.
 
-Join our community of developers creating universal apps.
+Novas funcionalidades, melhorias de interface e aprimoramentos poderão ser incorporados ao projeto durante sua evolução.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🛠️ Tecnologias utilizadas
+
+O projeto foi desenvolvido utilizando tecnologias voltadas ao desenvolvimento de aplicações mobile:
+
+- **React Native**
+- **TypeScript**
+- **Expo**
+- **Expo Router**
+- **Expo Notifications**
+- **AsyncStorage**
+- **JavaScript**
+- **Kotlin** para integrações e recursos específicos da plataforma Android
+
+---
+
+## 🔔 Notificações e alarmes
+
+O aplicativo utiliza o sistema de notificações do dispositivo para realizar os lembretes dos medicamentos.
+
+Para que os alarmes funcionem corretamente, é necessário permitir que o aplicativo envie notificações durante a instalação e configuração do aplicativo.
+
+---
+
+## 📲 Instalação
+
+Atualmente, o **Dose de Carinho** possui versão disponível para **Android**.
+
+Para instalar a versão Beta:
+
+1. Faça o download do aplicativo pelo link disponibilizado pelo projeto;
+2. Abra a pasta **Downloads** do dispositivo;
+3. Toque no arquivo do aplicativo para iniciar a instalação;
+4. Caso seja solicitado, permita a instalação do aplicativo;
+5. Ao abrir o Dose de Carinho, permita o envio de notificações.
+
+> ⚠️ **Importante:** a permissão para envio de notificações é necessária para que os lembretes dos medicamentos funcionem corretamente.
+
+---
+
+## 🎓 Projeto acadêmico
+
+Este aplicativo foi desenvolvido como parte das atividades acadêmicas do curso de **Análise e Desenvolvimento de Sistemas**.
+
+O projeto envolve etapas de:
+
+- Concepção e idealização;
+- Wireframing;
+- Definição de nome e identidade;
+- Definição do stack tecnológico;
+- Prototipagem de alta fidelidade;
+- Desenvolvimento do código;
+- Testes em emulador e dispositivo móvel;
+- Refatoração e estilização;
+- Validação final.
+
+O projeto também busca demonstrar a aplicação prática dos conhecimentos adquiridos durante a formação em desenvolvimento de software e desenvolvimento mobile.
+
+---
